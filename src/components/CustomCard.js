@@ -29,12 +29,9 @@ export const CustomCard = ({ movie, func, isDelete, removeDisplay }) => {
           >
             Happy
           </Button>
-
-        
+        <Button>
          <i onClick ={removeDisplay} className="fa-solid fa-trash"></i>
-            
-       
-
+         </Button>
           <Button
             onClick={() => func({ ...movie, type: "lazy" })}
             variant="info"
