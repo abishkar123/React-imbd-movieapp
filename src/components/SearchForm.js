@@ -26,6 +26,19 @@ export const SearchForm = ({ func }) => {
       setIsError(true);
     }
   };
+  const handleOnAddList = movie =>{
+    //send movie to prevent component 
+    func(movie);
+    // reset the movie state so the card is nogt shwoing after add movie to tht list 
+    setMovie({});
+    // reset the input fild so
+    setForm("");
+  }
+
+  const removeDisplay = () =>{
+    setMovie({});
+    setForm("");
+  };
   return (
     <div className="bg-dark py-5 rounded p-2">
       <Form onSubmit={handleOnSubmit}>
@@ -36,6 +49,7 @@ export const SearchForm = ({ func }) => {
                 onChange={handlOnChange}
                 placeholder="Movie Name..."
                 required
+                value ={form}
               />
               <div className="d-grid">
                 <Button varient="primary" type="submit">
@@ -48,7 +62,7 @@ export const SearchForm = ({ func }) => {
       </Form>
 
       <div className="mt-3 d-flex justify-content-center">
-        {movie?.imdbID && <CustomCard movie={movie} func={func} />}
+        {movie?.imdbID && <CustomCard movie={movie} func={handleOnAddList} removeDisplay={removeDisplay} />}
 
         {isError && (
           <Alert variant="danger">
